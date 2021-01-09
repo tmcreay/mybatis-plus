@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 是mapper接口的所在的全限定名称-->
+<mapper namespace="com.example.springbootmybatisplus.mapper.UserMapper">
+    <select id="findAll" resultType="User">
+        select id,name,age,sex from user
+    </select>
+
+
+
+    <!-- 驼峰规则映射
+          对象    属性
+          User    userId
+          表      字段
+          user    user_id
+          上述操作利用resultType方式，能否自动的映射？？
+          解决策略：开启驼峰规则映射
+
+          实现原理：user_id动态的去除"_"线之后首字母大写userId。
+                    与User对象的属性映射。
+
+           案例：
+                条件：如果已经开启了驼峰规则映射。
+                对象的属性user_id，表中的字段user_id能否自动映射？？？
+                由于开启了驼峰规则，字段user_id去除"_"线，之后首字母大写。
+                字段userId名称    属性名称user_id  名称不一致。所以不能映射。
+          -->
+</mapper>
